@@ -9,4 +9,6 @@
     <string name="btfallo">Salir</string>
     <string name="humedad">Humedad</string>
     <string name="senstermica">Sensación Térmica</string>
+    <string name="viento">Dirección y velocidad del viento</string>
+    <string name="direccion">Dirección </string>
 </resources>

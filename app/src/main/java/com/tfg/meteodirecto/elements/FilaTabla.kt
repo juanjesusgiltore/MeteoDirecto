@@ -21,8 +21,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.tfg.meteodirecto.model.CalcularDia
 import com.tfg.meteodirecto.R
-import com.tfg.meteodirecto.model.CalcularHumeda
-import com.tfg.meteodirecto.model.EstadoCielo
 import com.tfg.meteodirecto.peticion.PeticionTiempoViewModel
 import com.tfg.meteodirecto.peticion.data.dataTiempo.Dia
 

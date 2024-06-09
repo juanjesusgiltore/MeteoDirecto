@@ -2,6 +2,7 @@ package com.tfg.meteodirecto.elements
 
 import android.util.Log
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -38,10 +39,9 @@ fun Tabla(
 
     tiempo?.let {
         Log.i("estado1" ,tiempo.toString())
-        LazyColumn(
-
+        Column(
         ) {
-            items(it[0].prediccion.dia) { dia ->
+            it[0].prediccion.dia.forEach { dia ->
                 FilaTabla(dia, peticionTiempoViewModel)
                 Spacer(modifier = Modifier.height(16.dp))
             }

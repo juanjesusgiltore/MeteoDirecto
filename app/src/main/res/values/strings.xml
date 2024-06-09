@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MeteoDirecto</string>
+    <string name="añadir">Añadir Localidad +</string>
+    <string name="caracter">Ponga al menos 3 caracteres</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="borrar">Borrar</string>
+    <string name="asegurar">¿Estás seguro de que quiere borrar?</string>
+    <string name="fallo">La localidad ya ha sido añadida</string>
+    <string name="btfallo">Salir</string>
+    <string name="humedad">Humedad</string>
+    <string name="senstermica">Sensación Térmica</string>
+</resources>

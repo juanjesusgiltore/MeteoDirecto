@@ -19,19 +19,25 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -40,6 +46,7 @@ import com.tfg.meteodirecto.database.DatabaseFavoritoViewModel
 import com.tfg.meteodirecto.elements.ListaFavoritos
 import com.tfg.meteodirecto.elements.MainScreen
 import com.tfg.meteodirecto.elements.TopBar
+import com.tfg.meteodirecto.model.Musica
 import com.tfg.meteodirecto.navegation.SelectNavegation
 import com.tfg.meteodirecto.peticion.PeticionDatos2ViewModel
 import com.tfg.meteodirecto.peticion.PeticionDatosViewModel
@@ -55,15 +62,25 @@ fun MenuBar(
     peticionDatosViewModel: PeticionDatosViewModel,
     peticionTiempoViewModel: PeticionTiempoViewModel,
     peticionDatos2ViewModel: PeticionDatos2ViewModel,
-    peticionTiempo2ViewModel: PeticionTiempo2ViewModel
-) {
+    peticionTiempo2ViewModel: PeticionTiempo2ViewModel,
+    musicPlayer: Musica,
+
+    ) {
     databaseFavoritoViewModel.getlistfavoritos()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     val activity = LocalContext.current as Activity
     val favoritos by databaseFavoritoViewModel.todasLosFavoritos.observeAsState()
     val isSelected by databaseFavoritoViewModel.isSelected.observeAsState()
+    var musica by rememberSaveable { mutableStateOf(true) }
 
+    musicPlayer.start()
+
+    DisposableEffect(key1 = musicPlayer) {
+        onDispose {
+            musicPlayer.pause()
+        }
+    }
 
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -76,15 +93,47 @@ fun MenuBar(
                 Column(
                     modifier = Modifier.padding(10.dp)
                 ) {
-                    IconButton(
-                        onClick = {
-                            scope.launch {
-                                drawerState.close()
+                    Row {
+                        IconButton(
+                            onClick = {
+                                scope.launch {
+                                    drawerState.close()
+                                }
                             }
+                        ) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = "back"
+                            )
                         }
-                    ) {
-                      Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                          contentDescription ="back" )
+                        Spacer(modifier = Modifier.weight(1f) )
+                        IconToggleButton(
+                            checked =musica ,
+                            onCheckedChange ={isCheck->
+                                musica=isCheck
+                                if (isCheck) {
+                                    musicPlayer.start()
+                                } else {
+                                    musicPlayer.pause()
+
+                                }
+                            }
+
+                        ) {
+                            if (musica) {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.volume_up_24dp_fill0_wght400_grad0_opsz24),
+                                    contentDescription = "Pause"
+                                )
+                            } else {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.volume_off_24dp_fill0_wght400_grad0_opsz24),
+                                    contentDescription = "Play"
+                                )
+                            }
+
+                        }
+
                     }
                     Spacer(modifier = Modifier.height(10.dp))
                 Box(
@@ -135,6 +184,7 @@ fun MenuBar(
 
 
     }
+
     BackHandler {
         if (drawerState.isOpen){
             scope.launch {
@@ -144,6 +194,7 @@ fun MenuBar(
             activity.finish()
         }
     }
+
 }
 
 

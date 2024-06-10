@@ -17,11 +17,8 @@ import com.tfg.meteodirecto.peticion.PeticionTiempo2ViewModel
 
 @Composable
 fun ListaFila(
-    peticionDatos2ViewModel: PeticionDatos2ViewModel,
     peticionTiempo2ViewModel: PeticionTiempo2ViewModel,
-    favoritos: Favoritos
 ) {
-    val datos by peticionDatos2ViewModel .datos .observeAsState()
     val tiempo by peticionTiempo2ViewModel .tiempo.observeAsState()
     val temperatura by peticionTiempo2ViewModel.temperatura.observeAsState()
     val humedad by peticionTiempo2ViewModel.humedad.observeAsState()
@@ -29,12 +26,6 @@ fun ListaFila(
     val lluvia by peticionTiempo2ViewModel.lluvia.observeAsState()
     val estado by peticionTiempo2ViewModel.estado.observeAsState()
 
-    LaunchedEffect(favoritos) {
-        peticionDatos2ViewModel.getDatos(favoritos.CPRO+favoritos.CMUN)
-    }
-    LaunchedEffect(datos) {
-        datos?.let { peticionTiempo2ViewModel.getTiempo(it.datos)  }
-    }
     LaunchedEffect(tiempo) {
         tiempo?.let {
             peticionTiempo2ViewModel.getListaTemperatura()

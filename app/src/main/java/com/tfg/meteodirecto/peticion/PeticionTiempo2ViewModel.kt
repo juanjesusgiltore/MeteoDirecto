@@ -16,7 +16,6 @@ import com.tfg.meteodirecto.peticion.data.TiempoHorarioItem
 import com.tfg.meteodirecto.peticion.data.dataTiempoHorario.EstadoCielo2
 import com.tfg.meteodirecto.peticion.data.dataTiempoHorario.HumedadRelativa2
 import com.tfg.meteodirecto.peticion.data.dataTiempoHorario.Precipitacion
-import com.tfg.meteodirecto.peticion.data.dataTiempoHorario.ProbPrecipitacion2
 import com.tfg.meteodirecto.peticion.data.dataTiempoHorario.SensTermica2
 import com.tfg.meteodirecto.peticion.data.dataTiempoHorario.Temperatura2
 import com.tfg.meteodirecto.peticion.retrofit.tiempo2.InstanciaRetrofitTiempo2
@@ -49,6 +48,14 @@ class PeticionTiempo2ViewModel :ViewModel() {
 
     val estado:LiveData<List<EstadoCielo2>> =_estado
 
+    private val _temperaturaActual=MutableLiveData<String>()
+
+    val temperaturaActual:LiveData<String> =_temperaturaActual
+
+    private val _estadoCielo=MutableLiveData<Int>()
+
+    val estadoCielo:LiveData<Int> =_estadoCielo
+
     fun getTiempo(url:String){
         val baseurl=url.substring(0,url.lastIndexOf("/")+1)
         val endpoint=url.substring(url.lastIndexOf("/")+1)
@@ -66,13 +73,13 @@ class PeticionTiempo2ViewModel :ViewModel() {
             }
         }
     }
-    fun getTemperatura(tiempo: TiempoHorarioItem):String{
-        return CalcularTemperatura().getTemperaturaActual(tiempo,getHoraActual())
+    fun getTemperatura(tiempo: TiempoHorarioItem){
+        _temperaturaActual.postValue(CalcularTemperatura().getTemperaturaActual(tiempo,getHoraActual()))
     }
-    fun getEstadoCielo(tiempo: TiempoHorarioItem): Int {
-        return CalcularEstadoCielo().getEstadoCieloCard(getHoraActual(),tiempo)
+    fun getEstadoCielo(tiempo: TiempoHorarioItem) {
+        _estadoCielo.postValue(CalcularEstadoCielo().getEstadoCieloCard(getHoraActual(),tiempo))
     }
-    fun getHoraActual():String{
+    private fun getHoraActual():String{
         return CalcularHoraActual().getHoraActual()
     }
     fun getEstado(tiempo: TiempoHorarioItem):EstadoCielo2?{

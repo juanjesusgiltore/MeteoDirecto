@@ -21,19 +21,11 @@ import com.tfg.meteodirecto.peticion.PeticionTiempo2ViewModel
 
 @Composable
 fun Viento(
-    peticionDatosViewModel: PeticionDatos2ViewModel,
     peticionTiempoViewModel: PeticionTiempo2ViewModel,
-    favoritos: Favoritos
 ) {
-    val datos by peticionDatosViewModel .datos .observeAsState()
     val tiempo by peticionTiempoViewModel .tiempo.observeAsState()
 
-    LaunchedEffect(favoritos) {
-        peticionDatosViewModel.getDatos(favoritos.CPRO+favoritos.CMUN)
-    }
-    LaunchedEffect(datos) {
-        datos?.let { peticionTiempoViewModel.getTiempo(it.datos)  }
-    }
+
 
 
     tiempo?.let {

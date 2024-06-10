@@ -70,6 +70,8 @@ dependencies {
     implementation(libs.com.squareup.retrofit2.converter)
     implementation(libs.com.squareup.okhttp3.logging.interceptor)
     implementation(libs.io.coil.kt.coil.compose)
+    implementation(libs.io.coil.kt.coil.gif)
+
 
     kapt(libs.androidx.room.compiler)
 

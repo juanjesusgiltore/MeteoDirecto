@@ -19,6 +19,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -35,12 +36,16 @@ import com.tfg.meteodirecto.database.DatabaseLocalidadesViewModel
 import com.tfg.meteodirecto.database.entities.Favoritos
 import com.tfg.meteodirecto.database.entities.Localidades
 import com.tfg.meteodirecto.elements.AlertaFallo
+import com.tfg.meteodirecto.model.Musica
 import com.tfg.meteodirecto.navegation.SelectNavegation
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchBar(navController: NavController, databaseLocalidades: DatabaseLocalidadesViewModel,
-              databaseFavoritoViewModel: DatabaseFavoritoViewModel){
+fun SearchBar(
+    navController: NavController, databaseLocalidades: DatabaseLocalidadesViewModel,
+    databaseFavoritoViewModel: DatabaseFavoritoViewModel,
+    musicPlayer: Musica,
+){
     var query by remember { mutableStateOf("") }
     var isActive by remember { mutableStateOf(true) }
     val localidades:List<Localidades> by databaseLocalidades.todasLasLocalidades.observeAsState(initial = emptyList())
@@ -48,6 +53,12 @@ fun SearchBar(navController: NavController, databaseLocalidades: DatabaseLocalid
     val flag2 by databaseFavoritoViewModel.flag.observeAsState()
 
     var navigateToMainScreen by remember { mutableStateOf(false) }
+
+    DisposableEffect(key1 = musicPlayer) {
+        onDispose {
+            musicPlayer.pause()
+        }
+    }
 
 if(flag==true) {
     SearchBar(

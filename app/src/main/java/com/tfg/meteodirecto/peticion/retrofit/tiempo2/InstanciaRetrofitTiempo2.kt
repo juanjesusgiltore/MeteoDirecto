@@ -11,7 +11,7 @@ object InstanciaRetrofitTiempo2 {
 
     val gson = GsonBuilder().setLenient().create()
 
-    private val loggingInterceptor = HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
+   /* private val loggingInterceptor = HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
         override fun log(message: String) {
             Log.i("Inter",message) // Imprimir el mensaje de log
         }
@@ -21,14 +21,14 @@ object InstanciaRetrofitTiempo2 {
 
     private val okHttpClient = OkHttpClient.Builder()
         .addInterceptor(loggingInterceptor) // Agregar el interceptor de registro
-        .build()
+        .build()*/
 
     fun getRetrofitTiempo2(BASE_URL:String): InterfazRetrofitTiempo2 {
 
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .client(okHttpClient)
+            //.client(okHttpClient)
             .build().create(InterfazRetrofitTiempo2::class.java)
     }
 }

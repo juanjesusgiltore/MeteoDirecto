@@ -8,6 +8,7 @@ import com.tfg.meteodirecto.database.DatabaseFavoritoViewModel
 import com.tfg.meteodirecto.screen.MenuBar
 import com.tfg.meteodirecto.screen.SearchBar
 import com.tfg.meteodirecto.database.DatabaseLocalidadesViewModel
+import com.tfg.meteodirecto.model.Musica
 import com.tfg.meteodirecto.peticion.PeticionDatos2ViewModel
 import com.tfg.meteodirecto.peticion.PeticionDatosViewModel
 import com.tfg.meteodirecto.peticion.PeticionTiempo2ViewModel
@@ -20,17 +21,19 @@ fun NavgationApp(
     peticionDatosViewModel: PeticionDatosViewModel,
     peticionTiempoViewModel: PeticionTiempoViewModel,
     peticionDatos2ViewModel: PeticionDatos2ViewModel,
-    peticionTiempo2ViewModel: PeticionTiempo2ViewModel
+    peticionTiempo2ViewModel: PeticionTiempo2ViewModel,
+    musicPlayer: Musica,
 ){
     val navController=rememberNavController()
 
     NavHost(navController = navController, startDestination =SelectNavegation.MainScreen.route ) {
         composable(route=SelectNavegation.MainScreen.route){
             MenuBar(navController = navController,databaseFavoritoViewModel,
-                peticionDatosViewModel,peticionTiempoViewModel,peticionDatos2ViewModel,peticionTiempo2ViewModel)
+                peticionDatosViewModel,peticionTiempoViewModel,
+                peticionDatos2ViewModel,peticionTiempo2ViewModel,musicPlayer)
         }
         composable(route=SelectNavegation.SearchBar.route){
-            SearchBar(navController,databaseLocalidades,databaseFavoritoViewModel)
+            SearchBar(navController,databaseLocalidades,databaseFavoritoViewModel,musicPlayer)
         }
     }
 }

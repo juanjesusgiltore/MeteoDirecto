@@ -5,10 +5,11 @@ import java.time.format.DateTimeFormatter
 
 class CalcularHoraActual {
 
+    private val current = LocalDateTime.now()
+
     fun getHoraActual():String{
-         val current = LocalDateTime.now()
-         val formatter = DateTimeFormatter.ofPattern("HH:mm:ss")
-         val horaActual=current.format(formatter).substring(0,2)
-        return horaActual
+         val formatter = DateTimeFormatter.ofPattern("HH")
+         return current.format(formatter).toString()
     }
+
 }

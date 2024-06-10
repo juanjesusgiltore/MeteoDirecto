@@ -1,6 +1,7 @@
 package com.tfg.meteodirecto.elements
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -28,28 +29,20 @@ fun MainScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
+                .padding(16.dp)
         ) {
-            item{
-                Tarjeta(peticionDatos2ViewModel, peticionTiempo2ViewModel ,favoritos )
-            }
-            item{
+            item {
+                Tarjeta(peticionDatos2ViewModel, peticionTiempo2ViewModel, favoritos)
                 Spacer(modifier = Modifier.height(16.dp))
-            }
-            item{
-                ListaFila(peticionDatos2ViewModel, peticionTiempo2ViewModel ,favoritos )
-            }
-            item{
+                ListaFila(peticionTiempo2ViewModel)
                 Spacer(modifier = Modifier.height(16.dp))
-            }
-            item{
-                Tabla(peticionDatosViewModel, peticionTiempoViewModel ,favoritos)
-            }
-            item{
+                Tabla(peticionDatosViewModel, peticionTiempoViewModel, favoritos)
                 Spacer(modifier = Modifier.height(16.dp))
+                Viento(peticionTiempo2ViewModel)
+                Uvmax( peticionTiempoViewModel )
+                OcasoOrto(peticionTiempo2ViewModel)
             }
-            item{
-                Viento(peticionDatos2ViewModel,peticionTiempo2ViewModel,favoritos)
             }
-        }
 }
+
 

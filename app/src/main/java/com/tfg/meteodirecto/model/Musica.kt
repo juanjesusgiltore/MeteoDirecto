@@ -14,9 +14,8 @@ class Musica(context: Context, rawResourceId: Int) {
         mediaPlayer.start()
     }
 
-    fun stop() {
-        mediaPlayer.stop()
-        mediaPlayer.release()
+    fun getIsSelected():Boolean{
+        return mediaPlayer.isPlaying
     }
     fun pause() {
         mediaPlayer.pause()

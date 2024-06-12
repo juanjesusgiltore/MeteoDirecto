@@ -71,6 +71,11 @@ dependencies {
     implementation(libs.com.squareup.okhttp3.logging.interceptor)
     implementation(libs.io.coil.kt.coil.compose)
     implementation(libs.io.coil.kt.coil.gif)
+    implementation(libs.androidx.compose.material.icons.extended)
+    implementation(libs.play.services.location)
+    implementation(libs.androidx.glance.appwidget)
+    implementation(libs.androidx.work.runtime.ktx)
+    implementation(libs.androidx.glance.material)
 
 
     kapt(libs.androidx.room.compiler)

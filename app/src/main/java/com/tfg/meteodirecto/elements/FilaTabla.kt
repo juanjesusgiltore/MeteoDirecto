@@ -30,6 +30,8 @@ fun FilaTabla(dia: Dia,peticionTiempoViewModel: PeticionTiempoViewModel ){
     var isOpen by remember{ mutableStateOf(false) }
     val imagenHumedad=peticionTiempoViewModel.getHumedad(dia)
     val estadocielo=peticionTiempoViewModel.getEstadoCielo(dia)
+
+
     Box(modifier = Modifier
         .animateContentSize()
         .fillMaxWidth()

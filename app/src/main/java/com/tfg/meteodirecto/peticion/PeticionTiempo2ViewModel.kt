@@ -42,7 +42,7 @@ class PeticionTiempo2ViewModel :ViewModel() {
 
     private val _humedad=MutableLiveData<List<HumedadRelativa2>>()
 
-    val humedad:LiveData<List<HumedadRelativa2>> =_humedad
+    val humedad :LiveData<List<HumedadRelativa2>> =_humedad
 
     private val _estado=MutableLiveData<List<EstadoCielo2>>()
 
@@ -51,6 +51,14 @@ class PeticionTiempo2ViewModel :ViewModel() {
     private val _temperaturaActual=MutableLiveData<String>()
 
     val temperaturaActual:LiveData<String> =_temperaturaActual
+
+    private val _sensActual=MutableLiveData<String>()
+
+    val sensActual:LiveData<String> =_sensActual
+
+    private val _humedadActual=MutableLiveData<String>()
+
+    val humedadActual:LiveData<String> =_humedadActual
 
     private val _estadoCielo=MutableLiveData<Int>()
 
@@ -87,6 +95,12 @@ class PeticionTiempo2ViewModel :ViewModel() {
     }
     fun getEstadoIcono(estadoCielo: String):Int{
         return CalcularEstadoCielo().getEstadoCieloIcono(estadoCielo)
+    }
+    fun getSensacion(tiempo: TiempoHorarioItem){
+        _sensActual.postValue(CalcularSensTermica().getSensacionActual(tiempo,getHoraActual()))
+    }
+    fun getHumedad(tiempo: TiempoHorarioItem){
+        _humedadActual.postValue(CalcularHumedad().getHumedadActual(tiempo,getHoraActual()))
     }
     fun getListaHumedad() {
         _tiempo.value?.let {

@@ -22,4 +22,15 @@ class CalcularSensTermica {
         }
         return listaData
     }
+
+    fun getSensacionActual(tiempoHorarioItem: TiempoHorarioItem,horaActual:String):String{
+        var sensacion=""
+        tiempoHorarioItem.prediccion.dia[0].sensTermica.forEach(){ sens->
+            if (sens.periodo == horaActual){
+                sensacion=sens.value
+            }
+        }
+        return sensacion
+
+    }
 }

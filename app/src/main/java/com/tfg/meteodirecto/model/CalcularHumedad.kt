@@ -3,7 +3,6 @@ package com.tfg.meteodirecto.model
 import com.tfg.meteodirecto.R
 import com.tfg.meteodirecto.peticion.data.TiempoHorarioItem
 import com.tfg.meteodirecto.peticion.data.dataTiempoHorario.HumedadRelativa2
-import com.tfg.meteodirecto.peticion.data.dataTiempoHorario.Temperatura2
 
 class CalcularHumedad {
 
@@ -36,5 +35,15 @@ class CalcularHumedad {
 
         }
         return listaData
+    }
+    fun getHumedadActual(tiempoHorarioItem: TiempoHorarioItem, horaActual:String):String{
+        var humedad=""
+        tiempoHorarioItem.prediccion.dia[0].humedadRelativa.forEach(){ hum->
+            if (hum.periodo == horaActual){
+                humedad=hum.value
+            }
+        }
+        return humedad
+
     }
 }

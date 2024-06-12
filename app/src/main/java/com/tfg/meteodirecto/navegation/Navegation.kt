@@ -28,7 +28,7 @@ fun NavgationApp(
 
     NavHost(navController = navController, startDestination =SelectNavegation.MainScreen.route ) {
         composable(route=SelectNavegation.MainScreen.route){
-            MenuBar(navController = navController,databaseFavoritoViewModel,
+            MenuBar(navController = navController,databaseFavoritoViewModel,databaseLocalidades,
                 peticionDatosViewModel,peticionTiempoViewModel,
                 peticionDatos2ViewModel,peticionTiempo2ViewModel,musicPlayer)
         }

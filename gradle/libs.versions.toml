@@ -16,8 +16,7 @@ retrofit="2.9.0"
 coil="2.1.0"
 icono="1.6.7"
 playServicesLocation = "21.3.0"
-widget="1.0.0"
-workRuntimeKtx = "2.9.0"
+mockito="3.12.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -47,9 +46,8 @@ io-coil-kt-coil-compose={group="io.coil-kt" ,name="coil-compose" ,version.ref="c
 io-coil-kt-coil-gif={group="io.coil-kt" ,name="coil-gif" ,version.ref="coil"}
 androidx-compose-material-icons-extended={group='androidx.compose.material', name='material-icons-extended', version.ref='icono'}
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
-androidx-glance-appwidget={group="androidx.glance",name="glance-appwidget",version.ref="widget"}
-androidx-work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workRuntimeKtx" }
-androidx-glance-material={group="androidx.glance",name="glance-material3",version.ref="widget"}
+org-mockito-core={group="org.mockito",name="mockito-core",version.ref="mockito"}
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -212,18 +213,10 @@ if(musica) {
                             innerPadding, favorito, peticionDatosViewModel, peticionTiempoViewModel,
                             peticionDatos2ViewModel, peticionTiempo2ViewModel
                         )
-                    } else {
-                        CircularProgressIndicator(
-                            color = MaterialTheme.colorScheme.onPrimary
-                        )
-                        databaseFavoritoViewModel.getlistfavoritos()
-
                     }
                 }
-
             }
         }
-
     BackHandler {
         if (drawerState.isOpen){
             scope.launch {

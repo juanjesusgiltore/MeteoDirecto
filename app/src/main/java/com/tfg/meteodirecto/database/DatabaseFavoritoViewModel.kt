@@ -31,7 +31,6 @@ class DatabaseFavoritoViewModel(context: Context):ViewModel() {
     val flag:LiveData<Boolean> =_flag
 
     private val _favoritogps= MutableLiveData<Favoritos>()
-    val favoritogps: LiveData<Favoritos> =_favoritogps
 
 
     init {
@@ -56,8 +55,8 @@ class DatabaseFavoritoViewModel(context: Context):ViewModel() {
         } else {
             viewModelScope.launch(Dispatchers.IO) {
                 try {
-                    _flag.postValue(true)
                     miDaoFavoritos.insertarFavorito(favoritos)
+                    _flag.postValue(true)
                     val updatedList = miDaoFavoritos.getAllFavoritos()
                     _todasLosFavoritos.postValue(updatedList)
                     actualizarSeleccion(updatedList)

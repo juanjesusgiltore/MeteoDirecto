@@ -9,8 +9,10 @@
     <string name="btfallo">Salir</string>
     <string name="humedad">Humedad</string>
     <string name="senstermica">Sensación Térmica</string>
-    <string name="viento">Dirección y velocidad del viento</string>
     <string name="direccion">Dirección </string>
     <string name="uv">Indice UV</string>
     <string name="ocasoorto">Salida y puesta del Sol</string>
+    <string name="tormenta">Probabilidad Tormenta</string>
+    <string name="nieve">Probabilidad Nieve</string>
+    <string name="viento">Viento</string>
 </resources>

@@ -1,9 +1,7 @@
 package com.tfg.meteodirecto.elements
 
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
@@ -26,6 +24,7 @@ fun MainScreen(
     peticionDatos2ViewModel: PeticionDatos2ViewModel,
     peticionTiempo2ViewModel: PeticionTiempo2ViewModel
 ) {
+
         LazyColumn(
             modifier = Modifier
                 .wrapContentSize()
@@ -37,13 +36,15 @@ fun MainScreen(
                 Spacer(modifier = Modifier.height(16.dp))
                 ListaFila(peticionTiempo2ViewModel)
                 Spacer(modifier = Modifier.height(16.dp))
-                Tabla(peticionDatosViewModel, peticionTiempoViewModel, favoritos)
+                Tabla(peticionDatosViewModel, peticionTiempoViewModel, favoritos,peticionTiempo2ViewModel)
                 Spacer(modifier = Modifier.height(16.dp))
                 Viento(peticionTiempo2ViewModel)
                 Spacer(modifier = Modifier.height(16.dp))
                 Uvmax( peticionTiempoViewModel )
                 Spacer(modifier = Modifier.height(16.dp))
                 OcasoOrto(peticionTiempo2ViewModel)
+                Spacer(modifier = Modifier.height(16.dp))
+                FilaProbabilidades( peticionTiempo2ViewModel)
             }
             }
 }

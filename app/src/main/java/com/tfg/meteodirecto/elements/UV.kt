@@ -4,9 +4,13 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.WarningAmber
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -41,7 +45,7 @@ fun Uvmax(
                 .border(
                     width = 2.dp,
                     color = MaterialTheme.colorScheme.outline,
-                    shape= RoundedCornerShape(16.dp)
+                    shape = RoundedCornerShape(16.dp)
                 )
 
                 .padding(8.dp)
@@ -49,9 +53,15 @@ fun Uvmax(
             Column {
                 Text(text = stringResource(id = R.string.uv))
                 HorizontalDivider(thickness = 2.dp, color = MaterialTheme.colorScheme.outlineVariant)
+                Row {
                     Text(
                         text = it[0].prediccion.dia[0].uvMax.toString()
                     )
+                    if(it[0].prediccion.dia[0].uvMax>=8){
+                        Spacer(modifier = Modifier.width(10.dp))
+                        Icon(imageVector = Icons.Default.WarningAmber, contentDescription ="peligro" )
+                    }
+                }
             }
         }
     }

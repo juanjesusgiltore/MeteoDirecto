@@ -1,10 +1,7 @@
 package com.tfg.meteodirecto.model
 
-import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.Date
-import java.util.Locale
 
 class CalcularHoraActual {
 
@@ -15,9 +12,8 @@ class CalcularHoraActual {
          return current.format(formatter).toString()
     }
 
-    fun getTiempoActual(): String {
-        val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-        return dateFormat.format(Date())
+    fun parsearHora(hora: String): String {
+        return hora.substring(0, 2) + "-" + hora.substring(2, 4)
     }
 
 }

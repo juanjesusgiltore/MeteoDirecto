@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.tfg.meteodirecto.model.CalcularDia
 import com.tfg.meteodirecto.model.CalcularHoraActual
 import com.tfg.meteodirecto.model.CalcularHumedad
 import com.tfg.meteodirecto.model.CalcularLluvia
@@ -16,8 +17,10 @@ import com.tfg.meteodirecto.peticion.data.TiempoHorarioItem
 import com.tfg.meteodirecto.peticion.data.dataTiempoHorario.EstadoCielo2
 import com.tfg.meteodirecto.peticion.data.dataTiempoHorario.HumedadRelativa2
 import com.tfg.meteodirecto.peticion.data.dataTiempoHorario.Precipitacion
+import com.tfg.meteodirecto.peticion.data.dataTiempoHorario.Prediccion2
 import com.tfg.meteodirecto.peticion.data.dataTiempoHorario.SensTermica2
 import com.tfg.meteodirecto.peticion.data.dataTiempoHorario.Temperatura2
+import com.tfg.meteodirecto.peticion.data.dataTiempoHorario.VientoAndRachaMax
 import com.tfg.meteodirecto.peticion.retrofit.tiempo2.InstanciaRetrofitTiempo2
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -134,5 +137,14 @@ class PeticionTiempo2ViewModel :ViewModel() {
     fun getViento(viento:String):String{
         return CalcularViento().getDireccionViento(viento)
     }
+    fun getHoraParseada(hora:String):String{
+        return CalcularHoraActual().parsearHora(hora)
+    }
+    fun getListaViento(viento: Prediccion2):List<VientoAndRachaMax>{
+        return CalcularViento().getListaviento(viento,getHoraActual())
+    }
 
+    fun getDias(fechaDia:String):String{
+        return CalcularDia().devolverFecha(fechaDia)
+    }
 }

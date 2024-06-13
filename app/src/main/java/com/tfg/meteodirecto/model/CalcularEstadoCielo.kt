@@ -22,6 +22,7 @@ class CalcularEstadoCielo {
             "Nuboso Noche" -> estado = R.drawable.nights_stay_24dp_fill0_wght400_grad0_opsz24
             "Niebla" -> estado = R.drawable.mist_24dp_fill0_wght400_grad0_opsz24
             "Nubloso" -> estado = R.drawable.cloud_24dp_fill0_wght400_grad0_opsz24
+            "Nuboso" -> estado = R.drawable.cloud_24dp_fill0_wght400_grad0_opsz24
             "Intervalos nubosos" -> estado =
                 R.drawable.cloud_24dp_fill0_wght400_grad0_opsz24
 
@@ -84,6 +85,7 @@ class CalcularEstadoCielo {
                     "Nuboso Noche" -> id = R.drawable.nubes
                     "Niebla" -> id = R.drawable.fourwindfourwindfilms
                     "Nubloso" -> id = R.drawable.nubes
+                    "Nuboso" -> id = R.drawable.nubes
                     "Intervalos nubosos" -> id = R.drawable.nubes
                     "Poco nuboso" -> id = R.drawable.nubes
                     "Poco nuboso con lluvia" -> id = R.drawable.nubes

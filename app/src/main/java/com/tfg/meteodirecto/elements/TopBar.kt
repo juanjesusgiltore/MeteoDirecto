@@ -7,11 +7,14 @@ import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.tfg.meteodirecto.ui.theme.MeteoDirectoTheme
 import kotlinx.coroutines.CoroutineScope
@@ -20,7 +23,15 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(drawerState: DrawerState,scope:CoroutineScope){
+
         TopAppBar(
+            colors = TopAppBarColors(
+                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                actionIconContentColor = Color.White ,
+                scrolledContainerColor =Color.White ,
+                navigationIconContentColor =MaterialTheme.colorScheme.onPrimaryContainer ,
+                titleContentColor =Color.White  ,
+            ),
             navigationIcon = {
                 IconButton(
                     onClick = {

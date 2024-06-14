@@ -11,10 +11,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ShapeDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tfg.meteodirecto.database.DatabaseFavoritoViewModel
+import com.tfg.meteodirecto.database.DatabaseLocalidadesViewModel
 import com.tfg.meteodirecto.database.entities.Favoritos
 
 
@@ -36,11 +37,12 @@ import com.tfg.meteodirecto.database.entities.Favoritos
 fun Favorito(
     favorito: Favoritos,
     databaseFavoritoViewModel: DatabaseFavoritoViewModel,
+    databaseLocalidadesViewModel: DatabaseLocalidadesViewModel
     ){
 
     var alerta by remember { mutableStateOf(false) }
     val isSelected by databaseFavoritoViewModel.isSelected.observeAsState()
-
+    val nombre by databaseLocalidadesViewModel.localgps.observeAsState()
 
 
 
@@ -49,9 +51,9 @@ fun Favorito(
         .animateContentSize()
         .border(
             if (isSelected?.get(favorito) == true) {
-                BorderStroke(1.dp, Color.Black)
+                BorderStroke(1.dp, MaterialTheme.colorScheme.onSurfaceVariant)
             } else {
-                BorderStroke(0.dp, Color.White)
+                BorderStroke(0.dp, Color.Transparent)
             },
             ShapeDefaults.Small
         )
@@ -66,6 +68,9 @@ fun Favorito(
 
             ) {
                 Text(text = favorito.NOMBRE)
+                if(nombre==favorito.NOMBRE){
+                    Icon(imageVector = Icons.Default.LocationOn, contentDescription ="location" )
+                }
                 Spacer(modifier = Modifier.weight(1f))
                 IconButton(
                     onClick = {
@@ -97,7 +102,7 @@ fun FavoritoPreview(){
         NOMBRE="Málaga",
         isSelected =1
     )
-    var abrircerrar by remember { mutableStateOf(false) }
+    val abrircerrar by remember { mutableStateOf(false) }
     Box(modifier = Modifier
         .fillMaxWidth()
         .animateContentSize()
@@ -114,22 +119,6 @@ fun FavoritoPreview(){
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(text = favoritos.NOMBRE)
                 Spacer(modifier = Modifier.weight(1f))
-                IconButton(
-                    onClick = {
-                        abrircerrar=!abrircerrar
-                    }) {
-                    if (!abrircerrar) {
-                        Icon(
-                            imageVector = Icons.Default.KeyboardArrowDown,
-                            contentDescription = "FlechaAbajo"
-                        )
-                    }else{
-                        Icon(
-                            imageVector = Icons.Default.KeyboardArrowUp,
-                            contentDescription = "FlechaArriba"
-                        )
-                    }
-                }
                 IconButton(
                     onClick = { /*TODO*/ }) {
                     Icon(imageVector =Icons.Default.Delete ,

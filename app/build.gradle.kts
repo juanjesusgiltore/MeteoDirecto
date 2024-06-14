@@ -70,14 +70,28 @@ dependencies {
     implementation(libs.com.squareup.retrofit2.converter)
     implementation(libs.com.squareup.okhttp3.logging.interceptor)
     implementation(libs.io.coil.kt.coil.compose)
+    implementation(libs.io.coil.kt.coil.gif)
+    implementation(libs.androidx.compose.material.icons.extended)
+    implementation(libs.play.services.location)
+
+
 
     kapt(libs.androidx.room.compiler)
 
     testImplementation(libs.junit)
+    testImplementation(libs.org.mockito.core)
+    testImplementation(libs.jetbrains.kotlinx.coroutines.test)
+    testImplementation(libs.androidx.arch.core.testing)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.org.mockito.core)
+    androidTestImplementation(libs.jetbrains.kotlinx.coroutines.test)
+    androidTestImplementation(libs.androidx.arch.core.testing)
+
+
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }

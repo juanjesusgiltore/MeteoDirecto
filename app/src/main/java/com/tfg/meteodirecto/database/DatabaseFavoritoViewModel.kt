@@ -3,11 +3,14 @@ package com.tfg.meteodirecto.database
 import android.content.Context
 import android.database.sqlite.SQLiteConstraintException
 import android.util.Log
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tfg.meteodirecto.database.entities.Favoritos
+import com.tfg.meteodirecto.database.entities.Localidades
 import com.tfg.meteodirecto.database.interfaces.InterfazDaoFavoritos
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -27,10 +30,13 @@ class DatabaseFavoritoViewModel(context: Context):ViewModel() {
     private val _flag=MutableLiveData(false)
     val flag:LiveData<Boolean> =_flag
 
+    private val _favoritogps= MutableLiveData<Favoritos>()
+
+
     init {
         val database = BaseDeDatos.getDatabase(context)
         miDaoFavoritos = database.favoritosDao()
-
+        getlistfavoritos()
     }
 
     fun getlistfavoritos(){
@@ -42,14 +48,15 @@ class DatabaseFavoritoViewModel(context: Context):ViewModel() {
     }
 
     fun insertarFavorito(favoritos: Favoritos){
+        Log.i("vm",favoritos.toString())
         val existente = _todasLosFavoritos.value?.any { it == favoritos } ?: false
         if (existente) {
             _flag.postValue(false)
         } else {
             viewModelScope.launch(Dispatchers.IO) {
                 try {
-                    _flag.postValue(true)
                     miDaoFavoritos.insertarFavorito(favoritos)
+                    _flag.postValue(true)
                     val updatedList = miDaoFavoritos.getAllFavoritos()
                     _todasLosFavoritos.postValue(updatedList)
                     actualizarSeleccion(updatedList)
@@ -67,9 +74,7 @@ class DatabaseFavoritoViewModel(context: Context):ViewModel() {
             val updatedList = _todasLosFavoritos.value?.filter { it != favorito }
             _todasLosFavoritos.postValue(updatedList!!)
             actualizarSeleccion(updatedList)
-
         }
-
     }
 
     fun cambioSelecionado(favorito: Favoritos){
@@ -93,5 +98,20 @@ class DatabaseFavoritoViewModel(context: Context):ViewModel() {
 
     fun setFavoritos(){
          _flag.postValue(false)
+    }
+
+    fun insertarLocalidadGPS(localidad:Localidades){
+        val favorito = Favoritos(
+            CODAUTO = localidad.CODAUTO,
+            CPRO = localidad.CPRO,
+            CMUN = localidad.CMUN,
+            DC = localidad.DC,
+            NOMBRE = localidad.NOMBRE,
+            isSelected = 1,
+        )
+        if (_favoritogps.value!=favorito) {
+            _favoritogps.postValue(favorito)
+            insertarFavorito(favorito)
+        }
     }
 }

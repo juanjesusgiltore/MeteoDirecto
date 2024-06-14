@@ -1,6 +1,7 @@
 package com.tfg.meteodirecto.database
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -53,7 +54,7 @@ class DatabaseLocalidadesViewModel(context: Context):ViewModel() {
             try {
                 _localidadgps.postValue(miDaoLocalidades.getLocalidad(nombre))
             }catch (e:SQLException){
-
+                Log.e("E","exepcion",e)
             }
         }
     }

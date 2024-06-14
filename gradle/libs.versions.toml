@@ -5,6 +5,7 @@ coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
+kotlinxCoroutinesTestVersion = "1.5.2"
 lifecycleRuntimeKtx = "2.8.1"
 activityCompose = "1.9.0"
 composeBom = "2024.05.00"
@@ -20,6 +21,7 @@ mockito="3.12.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+jetbrains-kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTestVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -47,6 +49,7 @@ io-coil-kt-coil-gif={group="io.coil-kt" ,name="coil-gif" ,version.ref="coil"}
 androidx-compose-material-icons-extended={group='androidx.compose.material', name='material-icons-extended', version.ref='icono'}
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
 org-mockito-core={group="org.mockito",name="mockito-core",version.ref="mockito"}
+androidx-arch-core-testing={group="androidx.arch.core",name="core-testing",version="2.1.0"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

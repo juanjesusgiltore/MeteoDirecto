@@ -19,7 +19,6 @@ class CalcularViento {
             "E"->direccion="Este"
             else -> direccion="Sin identificar"
         }
-
         return direccion
     }
 
@@ -36,11 +35,7 @@ class CalcularViento {
                     lista.add(viento)
                 }
             }
-
         }
-
-
-
         return lista
     }
 }

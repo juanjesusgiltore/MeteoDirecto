@@ -1,4 +1,4 @@
-package com.tfg.meteodirecto.model
+package com.tfg.meteodirecto
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -13,9 +13,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.tfg.meteodirecto.R
 import com.tfg.meteodirecto.database.DatabaseFavoritoViewModel
 import com.tfg.meteodirecto.database.DatabaseLocalidadesViewModel
+import com.tfg.meteodirecto.model.Musica
 import com.tfg.meteodirecto.navegation.NavgationApp
 import com.tfg.meteodirecto.peticion.PeticionDatos2ViewModel
 import com.tfg.meteodirecto.peticion.PeticionDatosViewModel

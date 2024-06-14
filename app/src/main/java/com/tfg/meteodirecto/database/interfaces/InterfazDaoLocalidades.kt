@@ -10,5 +10,7 @@ interface InterfazDaoLocalidades {
     @Query("select*from localidades")
     fun getAllLocalidades():List<Localidades>
 
+    @Query("select*from localidades where localidades.NOMBRE=:nombre")
+    fun getLocalidad(nombre:String):Localidades
 }
 

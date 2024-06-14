@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tfg.meteodirecto.model.CalcularHumeda
-import com.tfg.meteodirecto.model.EstadoCielo
+import com.tfg.meteodirecto.model.CalcularHumedad
+import com.tfg.meteodirecto.model.CalcularEstadoCielo
 import com.tfg.meteodirecto.peticion.data.TiempoItem
 import com.tfg.meteodirecto.peticion.data.dataTiempo.Dia
 import com.tfg.meteodirecto.peticion.retrofit.tiempo.InstanciaRetrofitTiempo
@@ -39,10 +39,10 @@ class PeticionTiempoViewModel():ViewModel() {
     }
 
     fun getEstadoCielo(dia: Dia):Int{
-        return EstadoCielo().getEstadoCieloIcono(dia.estadoCielo[0].descripcion)
+        return CalcularEstadoCielo().getEstadoCieloIcono(dia.estadoCielo[0].descripcion)
     }
     fun getHumedad(dia:Dia):Int{
-        return CalcularHumeda().devolerImagen(dia.humedadRelativa.maxima)
+        return CalcularHumedad().devolerImagen(dia.humedadRelativa.maxima)
     }
 
 }

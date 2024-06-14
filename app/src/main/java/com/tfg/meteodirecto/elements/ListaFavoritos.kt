@@ -12,26 +12,31 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.tfg.meteodirecto.database.DatabaseFavoritoViewModel
-import com.tfg.meteodirecto.peticion.PeticionDatosViewModel
-import com.tfg.meteodirecto.peticion.PeticionTiempoViewModel
+import com.tfg.meteodirecto.database.DatabaseLocalidadesViewModel
 
 
 @SuppressLint("SuspiciousIndentation")
 @Composable
 fun ListaFavoritos(
     databaseFavoritoViewModel: DatabaseFavoritoViewModel,
+    databaseLocalidadesViewModel: DatabaseLocalidadesViewModel
+
 ){
     val favoritos by databaseFavoritoViewModel.todasLosFavoritos.observeAsState(initial = emptyList())
 
+
+    Log.i("lol",favoritos.toString())
         LazyColumn {
             items(favoritos) { item ->
-                    Favorito(
-                        favorito = item,
-                        databaseFavoritoViewModel = databaseFavoritoViewModel,
-                    )
-                    Spacer(modifier = Modifier.height(16.dp))
+                Favorito(
+                    favorito = item,
+                    databaseFavoritoViewModel = databaseFavoritoViewModel,
+                    databaseLocalidadesViewModel = databaseLocalidadesViewModel,
+                )
+                Spacer(modifier = Modifier.height(16.dp))
             }
         }
 }
+
 
 

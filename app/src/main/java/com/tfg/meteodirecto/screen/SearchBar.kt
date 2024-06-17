@@ -161,6 +161,7 @@ if(flag==true) {
             navigateToMainScreen=false
         }
     }else if(flag2==true && navigateToMainScreen){
+        databaseFavoritoViewModel.setFavoritos()
         navController.navigate(SelectNavegation.MainScreen.route)
     }
 
